@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Henry figma</title>
+      <title>LEARNING</title>
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+      <link href="./monitoreodeactividadstyles.css" rel="stylesheet">
+      <script src="../asistentedeseguridad.js"></script>
+      <script>
+         document.addEventListener("DOMContentLoaded", function() {
+             document.querySelector("#agregar-btn").addEventListener("click", function(e) {
+                 e.preventDefault()
+                 let descripcion = document.querySelector("#descripcion").value
+                 let nivelRiesgo = document.querySelector("#nivelRiesgo").value
+                 let resultado = agregarActividad(descripcion, nivelRiesgo)
+                 document.querySelector("#resultado").innerHTML = resultado
+             })
+
+             document.querySelector("#eliminar-btn").addEventListener("click", function(e) {
+                 e.preventDefault()
+                 let indice = parseInt(document.querySelector("#indiceEliminar").value)
+                 let resultado = eliminarActividadSospechosa(indice)
+                 document.querySelector("#resultado").innerHTML = resultado
+             })
+
+             document.querySelector("#filtrar-btn").addEventListener("click", function(e) {
+                 e.preventDefault()
+                 let nivelRiesgo = document.querySelector("#nivelFiltro").value
+                 let resultado = filtrarActividadesPorRiesgo(nivelRiesgo)
+                 document.querySelector("#resultado").innerHTML = resultado
+             })
+
+             document.querySelector("#reporte-btn").addEventListener("click", function(e) {
+                 e.preventDefault()
+                 let resultado = generarReportedeActividades()
+                 document.querySelector("#resultado").innerHTML = resultado
+             })
+         })
+      </script>
+<title>Asistente de Seguridad</title>
+       </head>
+        <body>
+        <nav class="navbar">
+          <div class="header-conteiner">
+            <div class="Logo-conteiner">
+              <img src="HEN-Logo.png" alt="HEN-Logo">
+            </div>
+            <div class="nav-conteiner" >
+              <nav class="espacio">
+                <a class="nav-btn Home"  href="./HOME.html">
+                Home
+                </a>
+                <a class="nav-btn" href="./generarcontraseñas.html">
+                  Generar contraseña
+                </a>
+                <a class="nav-btn" href="./cajafuerte.html">
+                Caja fuerte
+                </a>
+                <a class="nav-btn" href="./monitoreodeactividad.html">
+                  Monitoreo de actividad
+                </a>
+                <a class="nav-btn" href="./gestiondeperfiles.html">
+                    Gestion de usuarios
+                </a>
+              </nav>
+            </div> 
+          </div>
+            </ul>
+        </nav>
+        <div class="container">
+          <h1 class="Asistente">Asistente De Seguridad</h1>
+          <button class="yellow-btn">SISTEMA DE MONITOREO DE ACTIVIDAD SOSPECHOSA</button>
+          <div class="box">
+             <form class="formclass">
+                <div class="classdiv">
+                   <label class="label-letras">Descripción
+                   <input id="descripcion" class="letras" type="text">
+                   </label><br>
+                   <label class="label-letras">Nivel de riesgo (bajo, medio, alto)
+                   <input id="nivelRiesgo" class="letras" type="text">
+                   </label><br>
+                   <button id="agregar-btn" class="btn">AGREGAR ACTIVIDAD</button>
+                </div>
+                <div class="classdiv">
+                   <label class="label-letras">Eliminar una actividad sospechosa (Índice)
+                   <input id="indiceEliminar" class="letras" type="number">
+                   </label><br>
+                   <button id="eliminar-btn" class="btn">ELIMINAR ACTIVIDAD</button>
+                </div>
+                <div class="classdiv">
+                   <label class="label-letras">Filtrar actividades por nivel de riesgo
+                   <input id="nivelFiltro" class="letras" type="text">
+                   </label><br>
+                   <button id="filtrar-btn" class="btn">MOSTRAR ACTIVIDADES</button>
+                </div>
+                <div class="classdiv">
+                   <button id="reporte-btn" class="btn">GENERAR REPORTE</button>
+                </div>
+             </form>
+          </div>
+          <div id="resultado"></div>
+       </div>
+
+    </body>
+    </html>

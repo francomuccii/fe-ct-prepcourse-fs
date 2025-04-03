@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Henry figma</title>
+      <title>LEARNING</title>
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+      <link href="./gestiondeperfilesstyles.css" rel="stylesheet">
+      <script src="../gestiondeperfiles.js">
+      </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              document.querySelector("#opciones-btn").addEventListener("click", function(e) {
+              e.preventDefault()
+              
+              let opcion = document.querySelector("#input-opciones").value
+              let perfilesEncontrados = asistente.verPerfiles(opcion)
+
+              let perfilesContainer = document.querySelector("#perfiles-container")
+              perfilesContainer.innerHTML = ""
+
+              if (perfilesEncontrados.length) {
+                  perfilesEncontrados.forEach(perfil => {
+                      let perfilDiv = document.createElement("div")
+                      perfilDiv.textContent = perfil
+                      perfilesContainer.appendChild(perfilDiv)
+                  })
+              } else {
+                  perfilesContainer.textContent = "No se encontraron perfiles."
+              }
+             })
+            })
+
+            document.addEventListener("DOMContentLoaded", function() {
+              document.querySelector("#antiguedad-btn").addEventListener("click", function(e) {
+              e.preventDefault()
+              let perfilesEncontrados = asistente.verPerfilesPorAntiguedad()
+
+              let perfilesContainer = document.querySelector("#perfiles-container")
+              perfilesContainer.innerHTML = ""
+
+              if (perfilesEncontrados.length) {
+                  perfilesEncontrados.forEach(perfil => {
+                      let perfilDiv = document.createElement("div")
+                      perfilDiv.textContent = `${perfil.usuario} - ${perfil.codigo} - ${perfil.nivel_de_autorizacion} - ${perfil.antiguedad}`
+                      perfilesContainer.appendChild(perfilDiv)
+                  })
+              } else {
+                  perfilesContainer.textContent = "No se encontraron perfiles."
+              }
+             })
+            })
+
+            document.addEventListener("DOMContentLoaded", function() {
+              document.querySelector("#admin-btn").addEventListener("click", function(e) {
+              e.preventDefault()
+
+              let perfilesEncontrados = asistente.verAdministradores()
+
+              let perfilesContainer = document.querySelector("#perfiles-container")
+              perfilesContainer.innerHTML = ""
+
+              if (perfilesEncontrados.length) {
+                  perfilesEncontrados.forEach(perfil => {
+                      let perfilDiv = document.createElement("div")
+                      perfilDiv.textContent = `${perfil.usuario} - ${perfil.codigo} - ${perfil.nivel_de_autorizacion} - ${perfil.antiguedad}`
+                      perfilesContainer.appendChild(perfilDiv)
+                  })
+              } else {
+                  perfilesContainer.textContent = "No se encontraron perfiles."
+              }
+             })
+            })
+
+            document.addEventListener("DOMContentLoaded", function() {
+              document.querySelector("#modificar-btn").addEventListener("click", function(e) {
+              e.preventDefault()
+              let usuario = document.querySelector("#nuevo-usuario-input").value
+              let nuevoCodigo = document.querySelector("#nuevo-codigo-input").value
+              alert(asistente.modificarAcceso(usuario, Number(nuevoCodigo)))
+             })
+            })
+        </script>
+<title>Asistente de Seguridad</title>
+       </head>
+        <body>
+        <nav class="navbar">
+          <div class="header-conteiner">
+            <div class="Logo-conteiner">
+              <img src="HEN-Logo.png" alt="HEN-Logo">
+            </div>
+            <div class="nav-conteiner" >
+              <nav class="espacio">
+                <a class="nav-btn Home"  href="./HOME.html">
+                Home
+                </a>
+                <a class="nav-btn" href="./generarcontraseñas.html">
+                  Generar contraseña
+                </a>
+                <a class="nav-btn" href="./cajafuerte.html">
+                Caja fuerte
+                </a>
+                <a class="nav-btn" href="./monitoreodeactividad.html">
+                  Monitoreo de actividad
+                </a>
+                <a class="nav-btn" href="./gestiondeperfiles.html">
+                    Gestion de usuarios
+                </a>
+              </nav>
+            </div> 
+          </div>
+            </ul>
+        </nav>
+        <div class="container">
+            <h1 class="Asistente" >Asistente De Seguridad</h1>
+            <button class="yellow-btn">GESTION DE PERFILES</button>
+            <div class="box">
+                <form class="formclass">
+                    <div class="classdiv">
+                    <label class="label-letras">
+                      Ver perfiles
+                      <input id="input-opciones" placeholder="titulo" class="letras"type="text">
+                    </label>
+                    <br>
+                    <button id="opciones-btn" class="btn">VER</button>
+                </div>
+                <div class="classdiv">
+                    <label class="label-letras" >Ver perfiles por antiguedad</label><br>
+                    <button id="antiguedad-btn" class="btn">VER</button>
+                </div>
+                <div class="classdiv">
+                    <label class="label-letras" >Ver administradores</label><br>
+                    <button id="admin-btn" class="btn">VER</button>
+                </div>
+                <div class="classdiv-vert">
+                  <label class="label-letras" >Modificar acceso</label><br>
+                    <label class="label-letras" >
+                      Usuario
+                      <input id="nuevo-usuario-input" class="letras" type="text">
+                    </label><br>
+                    <label class="label-letras" >
+                      Nuevo codigo de acceso
+                      <input id="nuevo-codigo-input" class="letras" type="text">
+                    </label><br>
+                    <button id="modificar-btn" class="btn">Actualizar</button>
+                </div>
+                  <p class="label-letras">Usuario - Codigo - Nivel de autorizacion - Antiguedad</p>
+                <div id="perfiles-container">
+                  
+                </div>
+                </form>
+            </div>
+        </div>
+
+    </body>
+    </html>

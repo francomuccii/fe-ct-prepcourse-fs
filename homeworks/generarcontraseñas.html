@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Henry figma</title>
+      <title>LEARNING</title>
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+      <link href="./generadorcontraseñastyles.css" rel="stylesheet">
+      <script src="./generadorcontraseñas.js">
+      </script>
+      <script>
+         document.addEventListener("DOMContentLoaded", function() {
+          document.querySelector("#generar-btn").addEventListener('click',  function(e) {
+            e.preventDefault()
+            let longitud = document.querySelector("#cantidad-caracteres-input").value
+            let especiales = document.querySelector("#especiales-input").checked
+            let numeros = document.querySelector("#numeros-input").checked
+            let mayusculas = document.querySelector("#mayusc-input").checked
+            let contraseñaContainer = document.querySelector("#contraseña-container")
+            contraseñaContainer.innerHTML = ""
+            let checkLongitud = checklongitud(Number(longitud))
+            if (typeof checkLongitud !== "number") {
+              contraseñaContainer.innerHTML = checkLongitud
+              return
+            }
+            contraseñaContainer.innerHTML = generarcontraseña(longitud, especiales, numeros, mayusculas)
+            console.log("longitud: ", longitud)
+            console.log("especiales: ", especiales)
+            console.log("numeros: ", numeros)
+            console.log("mayusculas: ", mayusculas)
+          })
+         })
+      </script>
+<title>Asistente de Seguridad</title>
+       </head>
+        <body>
+        <nav class="navbar">
+          <div class="header-conteiner">
+            <div class="Logo-conteiner">
+              <img src="HEN-Logo.png" alt="HEN-Logo">
+            </div>
+            <div class="nav-conteiner" >
+              <nav class="espacio">
+                <a class="nav-btn Home"  href="./HOME.html">
+                Home
+                </a>
+                <a class="nav-btn" href="./generarcontraseñas.html">
+                  Generar contraseña
+                </a>
+                <a class="nav-btn" href="./cajafuerte.html">
+                Caja fuerte
+                </a>
+                <a class="nav-btn" href="./monitoreodeactividad.html">
+                  Monitoreo de actividad
+                </a>
+                <a class="nav-btn" href="./gestiondeperfiles.html">
+                  Gestion de usuarios
+                </a>
+              </nav>
+            </div> 
+          </div>
+            </ul>
+        </nav>
+        <div class="container">
+            <h1 class="Asistente" >Asistente De Seguridad</h1>
+            <button class="yellow-btn">Generador de contraseñas para usuarios:</button>
+            <div class="box">
+                <form class="formclass">
+                    <label class="label-letras">
+                      Cantidad de caracteres deseados
+                      <input id="cantidad-caracteres-input" class="letras" type="number">
+                    </label><br>
+                    <label class="label-letras" >
+                      ¿Incluir caracteres especiales?
+                      <input id="especiales-input" class="letras"type="checkbox">
+                    </label><br>
+                    <label class="label-letras" >
+                      ¿caracteres números?
+                      <input id="numeros-input" class="letras" type="checkbox">
+                    </label><br>
+                    <label class="label-letras" >
+                      ¿Incluir caracteres mayúsculas?
+                      <input id="mayusc-input" class="letras" type="checkbox">
+                    </label><br>
+                    <button id="generar-btn" class="btn">Generar contraseña</button>
+                </form>
+                <div id="contraseña-container">
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+    </html>
+    

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Asistente de Seguridad</title>
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+      <link href="./cajafuertesstyles.css" rel="stylesheet">
+      <script src="../cajafuerte.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        let codigoSecreto = ""
+        let intentosTotales = 0
+        let contadorIntentos = 0
+
+        document.querySelector("#guardar-btn").addEventListener("click", function(e) {
+            e.preventDefault()
+            let codigo = document.querySelector("#codigo-input").value
+            let intentos = parseInt(document.querySelector("#intentos-input").value)
+
+            let resultado = cajaFuerte(codigo, intentos)
+            
+            if (!resultado.includes("El codigo") && !resultado.includes("Solo se permite")) {
+                codigoSecreto = codigo
+                intentosTotales = intentos 
+                contadorIntentos = 0
+                alert("Código secreto guardado correctamente.")
+            } else {
+                alert(resultado)
+            }
+        })
+
+        document.querySelector("#validar-btn").addEventListener("click", function(e) {
+            e.preventDefault()
+            let codigoDesbloqueo = document.querySelector("#codigo-validar-input").value
+
+            if (codigoSecreto === "") {
+                alert("Primero debes guardar un código secreto.")
+                return
+            }
+
+            contadorIntentos++
+
+            let resultado = desbloquearCajaFuerte(codigoSecreto, codigoDesbloqueo, intentosTotales, contadorIntentos)
+
+            if (resultado.includes("Acceso denegado")) {
+                contadorIntentos = 0
+            }
+
+            alert(resultado)
+        })
+
+        document.querySelector("#reset-btn").addEventListener("click", function(e) {
+            e.preventDefault()
+            codigoSecreto = ""
+            intentosTotales = 0
+            contadorIntentos = 0
+            document.querySelector("#codigo-input").value = ""
+            document.querySelector("#intentos-input").value = ""
+            document.querySelector("#codigo-validar-input").value = ""
+            alert("Caja fuerte reseteada.")
+        })
+    })
+      </script>
+   </head>
+   <body>
+      <nav class="navbar">
+         <div class="header-conteiner">
+            <div class="Logo-conteiner">
+               <img src="HEN-Logo.png" alt="HEN-Logo">
+            </div>
+            <div class="nav-conteiner">
+               <nav class="espacio">
+                  <a class="nav-btn Home" href="./HOME.html">Home</a>
+                  <a class="nav-btn" href="./generarcontraseñas.html">Generar contraseña</a>
+                  <a class="nav-btn" href="./cajafuerte.html">Caja fuerte</a>
+                  <a class="nav-btn" href="./monitoreodeactividad.html">Monitoreo de actividad</a>
+                  <a class="nav-btn" href="./gestiondeperfiles.html">Gestion de usuarios</a>
+               </nav>
+            </div>
+         </div>
+      </nav>
+      <div class="container">
+         <h1 class="Asistente">Asistente De Seguridad</h1>
+         <button class="yellow-btn">CAJA FUERTE</button>
+         <div class="box">
+            <form class="formclass">
+               <div class="classdiv">
+                  <label class="label-letras">Codigo secreto <input id="codigo-input" class="letras" type="text"></label><br>
+                  <label class="label-letras">Cantidad de intentos <input id="intentos-input" class="letras" type="number"></label><br>
+                  <button id="guardar-btn" class="btn">GUARDAR</button>
+               </div>
+               <label class="label-letras">Validar codigo secreto <input id="codigo-validar-input" class="letras" type="text"></label><br>
+               <div class="classdiv">
+                  <button id="validar-btn" type="submit" class="btn">VALIDAR CODIGO</button>
+                  <button id="reset-btn" class="btn">RESET</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </body>
+</html>
